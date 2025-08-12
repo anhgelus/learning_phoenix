@@ -1,8 +1,11 @@
 defmodule LearningPhoenixWeb.UserController do
   use LearningPhoenixWeb, :controller
+  alias LearningPhoenix.{Repo, User}
 
   def index(conn, _params) do
-    render(conn, :index)
+    conn
+    |> assign(:test, Repo.all(User))
+    |> render(:index)
   end
 
   def edit(conn, _params) do
