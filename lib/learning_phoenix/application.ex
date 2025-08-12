@@ -10,6 +10,8 @@ defmodule LearningPhoenix.Application do
     children = [
       LearningPhoenixWeb.Telemetry,
       LearningPhoenix.Repo,
+      {Ecto.Migrator,
+       repos: Application.fetch_env!(:learning_phoenix, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:learning_phoenix, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: LearningPhoenix.PubSub},
       # Start a worker by calling: LearningPhoenix.Worker.start_link(arg)
@@ -30,5 +32,10 @@ defmodule LearningPhoenix.Application do
   def config_change(changed, _new, removed) do
     LearningPhoenixWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp skip_migrations?() do
+    # By default, sqlite migrations are run when using a release
+    System.get_env("RELEASE_NAME") == nil
   end
 end

@@ -20,7 +20,7 @@ config :learning_phoenix, LearningPhoenixWeb.Endpoint,
     layout: false
   ],
   pubsub_server: LearningPhoenix.PubSub,
-  live_view: [signing_salt: "6KnRBd1u"]
+  live_view: [signing_salt: "U5f+cEa0"]
 
 # Configures the mailer
 #

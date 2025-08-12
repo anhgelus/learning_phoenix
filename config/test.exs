@@ -6,18 +6,15 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :learning_phoenix, LearningPhoenix.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "learning_phoenix_test#{System.get_env("MIX_TEST_PARTITION")}",
-  pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: System.schedulers_online() * 2
+  database: Path.expand("../learning_phoenix_test.db", __DIR__),
+  pool_size: 5,
+  pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :learning_phoenix, LearningPhoenixWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "T/9ib796V1QpkkDHld7PxiBA/5GCmREIb0d9uYUAM6DNftWek9K/SVSelfjqBy3Z",
+  secret_key_base: "Htm54SqKYNSmzPpyH9Ifs7JKcCm41Xt4DYIEJuqHOocaM+IYHfNFYb4q+tOBPgQ4",
   server: false
 
 # In test we don't send emails

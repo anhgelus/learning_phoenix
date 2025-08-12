@@ -7,7 +7,7 @@ defmodule LearningPhoenixWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_learning_phoenix_key",
-    signing_salt: "RuSasXTJ",
+    signing_salt: "FPy3oQ90",
     same_site: "Lax"
   ]
 
